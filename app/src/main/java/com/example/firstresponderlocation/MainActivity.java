@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
             public void onClick(View v) {
                 //Firebase mRefChild = mRef.child("latitude");
                 //mSendData.setValue(latitude);
-                mDatabase.child("lattiude").setValue(latitude);
+                mDatabase.child("latitude").setValue(latitude);
                 mDatabase.child("longitude").setValue(longitude);
             }
         });
