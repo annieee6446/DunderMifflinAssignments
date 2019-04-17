@@ -12,15 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-//import android.widget.TextView;
-//import com.example.location_finder2.R;
-import com.firebase.client.Firebase;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements LocationListener{
-    //private TextView textView;
     private LocationManager locationManager;
     private Button mSendData;
     //private Firebase mRef;
@@ -32,11 +28,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
 
-        //mRef = new Firebase("https://emslocation-c72e3.firebaseio.com/");
         mSendData = findViewById(R.id.button);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        //textView = (TextView)findViewById(R.id.id_textview);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -45,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
                         != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        //Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
 
         Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
         onLocationChanged(location);
@@ -55,13 +47,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     public void onLocationChanged(Location location){
         final double longitude = location.getLongitude();
         final double latitude = location.getLatitude();
-        //textView.setText("Longitude" + longitude + "\n" + "Latitude" + latitude);
         mSendData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Firebase mRefChild = mRef.child("latitude");
-                //mSendData.setValue(latitude);
-                mDatabase.child("latitude").setValue(latitude);
+                mDatabase.child("lattiude").setValue(latitude);
                 mDatabase.child("longitude").setValue(longitude);
             }
         });
